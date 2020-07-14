@@ -11,6 +11,7 @@ const chalk =require("chalk")
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const schoolRouter = require("./routes/schools/schools")
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users/users');
 
@@ -43,6 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/school',schoolRouter)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
