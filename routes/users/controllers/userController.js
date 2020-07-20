@@ -1,7 +1,7 @@
 const User = require('../model/User');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const dbErrorHelper = require('../../lib/dbErrorHelper/dbErrorHelper');
-const jwtHelper = require('../authHelpers/jwtHelp');
+const jwtHelper = require('../../users/authHelpers/jwtHelp');
 
 module.exports = {
     signUp: async (req, res) => {
@@ -53,6 +53,7 @@ module.exports = {
             res.json({
                 jwtToken: jwtToken,
             });
+            
         } catch (e) {
             console.log(e);
 

@@ -5,6 +5,7 @@ const SchoolSchema = new mongoose.Schema({
     address:{type:String,trim:true},
     contact:{type:String,trim:true},
     missionStatement:{type:String,trim:true},
+    website:{type:String,trim:true},
 })
 
 module.exports = mongoose.model("School",SchoolSchema)
