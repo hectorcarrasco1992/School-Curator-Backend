@@ -1,11 +1,13 @@
 const User = require('../model/User');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const dbErrorHelper = require('../../lib/dbErrorHelper/dbErrorHelper');
-const jwtHelper = require('../authHelpers/jwtHelp');
+const jwtHelper = require('../../users/authHelpers/jwtHelp');
 
 module.exports = {
     signUp: async (req, res) => {
         try {
+            console.log(req.body);
+            
             let createdUser = new User({
                 name: req.body.name,
                 email: req.body.email,
@@ -15,6 +17,8 @@ module.exports = {
                 }
                 
             });
+            console.log("created user".createdUser);
+            
             let genSalt = await bcrypt.genSalt(12);
             let hashedPassword = await bcrypt.hash(
                 createdUser.password,
@@ -53,6 +57,7 @@ module.exports = {
             res.json({
                 jwtToken: jwtToken,
             });
+            
         } catch (e) {
             console.log(e);
 
