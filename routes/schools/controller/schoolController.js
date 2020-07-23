@@ -10,5 +10,25 @@ module.exports ={
             console.log(error);
             
         }
+    },
+
+    addSchool:async(req,res)=>{
+        try {
+            let {name,website,thumb,address,missionStatement,contact}= req.body
+            let newSchool = new School({
+                name:name,
+                address:address,
+                contact:contact,
+                missionStatement:missionStatement,
+                website:website,
+                thumb:thumb
+            })
+            await newSchool.save()
+
+            res.send(newSchool)
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
 }

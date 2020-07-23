@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const School = require("./model/School")
 const schools = require("./schoolLoader/schoolsLoader")
-const{getSchool}= require('./controller/schoolController')
+const{getSchool,addSchool}= require('./controller/schoolController')
 
 router.post('/test',()=>{
     console.log(schools);
@@ -12,7 +12,9 @@ router.post('/test',()=>{
             address:item.address,
             missionStatement:item.missionStatement,
             contact:item.contact,
-            website:item.website
+            website:item.website,
+            thumb:item.thumb,
+            image:item.image
         })
         console.log(newSchool);
         newSchool.save();
@@ -21,4 +23,6 @@ router.post('/test',()=>{
 });
 
 router.get('/get-schools',getSchool)
+
+router.post('/add-school',addSchool)
 module.exports = router;

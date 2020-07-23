@@ -6,6 +6,8 @@ const jwtHelper = require('../../users/authHelpers/jwtHelp');
 module.exports = {
     signUp: async (req, res) => {
         try {
+            console.log(req.body);
+            
             let createdUser = new User({
                 name: req.body.name,
                 email: req.body.email,
@@ -15,6 +17,8 @@ module.exports = {
                 }
                 
             });
+            console.log("created user".createdUser);
+            
             let genSalt = await bcrypt.genSalt(12);
             let hashedPassword = await bcrypt.hash(
                 createdUser.password,
